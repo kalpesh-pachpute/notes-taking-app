@@ -16,11 +16,14 @@ services:
       - mongodb
 
   frontend:
-    build: ./frontend
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
+  build: ./frontend
+  ports:
+    - "80:80"
+    - "443:443"
+  volumes:
+    - ./ssl:/etc/nginx/ssl:ro
+  depends_on:
+    - backend
 
 volumes:
   mongo_data:
